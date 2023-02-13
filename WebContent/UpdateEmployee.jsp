@@ -10,7 +10,7 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
-		<form action="UpdateEmployee" method="post">
+		<form action="/web_crud_app/employee/update" method="post">
 		    <input name="employee_id" type="hidden" value=${employee.getEmployeeId()}>
 		    
 			<label for="name">Name : </label>
@@ -34,7 +34,7 @@
 			<label for="date">Joining_Date : </label>
 			<input type="date" name="joining_date" required value=${employee.getJoiningDate()} max=${todayDate}><br>
 			
-			<input type="submit" value="Submit">
+			<input type="submit" value="Update">
 		</form>
 	</body>
 </html>

@@ -42,12 +42,12 @@
 		       <td> <%= resultset.getString(5) %></td>
 		       <td> <%= resultset.getString(6) %></td>
 		       <td>
-		        <a href="UpdateEmployee?employeeid=<%= resultset.getInt(1)%>">Update</a>
-		        <a href="DeleteEmployee?employeeid=<%= resultset.getInt(1)%>">Delete</a>
+		        <a href="/web_crud_app/employee/update?employeeid=<%= resultset.getInt(1)%>">Update</a>
+		        <a href="/web_crud_app/employee/delete?employeeid=<%= resultset.getInt(1)%>">Delete</a>
 		       </td>
-	   	  </tr>
+	   	  </tr>	
       	  <% }} %>
       </table>
-      <a href="CreateEmployee.jsp">Create Employee</a>
+      <a href="/web_crud_app/CreateEmployee.jsp">Create Employee</a>
      </body>
 </html>

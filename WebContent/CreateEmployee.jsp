@@ -9,12 +9,12 @@
 	</head>
 	<body>
 	<%!
-	 public String getDate(){
-		LocalDate date = LocalDate.now();
-        return date.toString(); 
-	 }
+		public String getDate(){
+			LocalDate date = LocalDate.now();
+        	return date.toString(); 
+		}
 	%>
-		<form action="CreateEmployee" method="post">
+		<form action="/web_crud_app/employee/create" method="post">
 			<label for="name">Name : </label>
 			<input type="text" name="name" required><br>
 			
@@ -36,7 +36,7 @@
 			<label for="date">Joining_Date : </label>
 			<input type="date" name="joining_date" max=<%=getDate()%> required><br>
 			
-			<input type="submit" value="Submit">
+			<input type="submit" value="Create">
 		</form>
 	</body>
 </html>
