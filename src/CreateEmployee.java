@@ -27,7 +27,7 @@ public class CreateEmployee extends HttpServlet  {
 	public CreateEmployee() {
         super();
     }
-
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{		
 		
 		String name = request.getParameter("name");
@@ -46,10 +46,10 @@ public class CreateEmployee extends HttpServlet  {
 	        preparedStatement.setInt(2,age);
 	        preparedStatement.setFloat(3, salary);
 	        preparedStatement.setString(4, skills);
-	        preparedStatement.setString(5, date);
+	        preparedStatement.setString(5, date);	
 	        preparedStatement.executeUpdate();
 	        
-	        request.getRequestDispatcher("ViewEmployee.jsp").forward(request, response);;
+	        request.getRequestDispatcher("ViewEmployee.jsp").forward(request, response);
         }catch(SQLException e){
         	e.printStackTrace();
         }catch (ClassNotFoundException e) {

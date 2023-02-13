@@ -1,9 +1,12 @@
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 import web_crud_app.DatabaseConnection;
 
@@ -44,10 +48,13 @@ public class UpdateEmployee extends HttpServlet {
 	        	employee.setJoiningDate(resultSet.getString(6));       
 	        }
 	        
+	        LocalDate date = LocalDate.now();
+	        String todayDate= date.toString(); 
+	        System.out.println(todayDate);
 	        List<String> skillList = Arrays.asList(employee.getSkills().split(","));
 	        request.setAttribute("employee", employee);
 	        request.setAttribute("skillList", skillList);
-	        
+	        request.setAttribute("todayDate", todayDate);
 	        RequestDispatcher requestDispatcher = request.getRequestDispatcher("UpdateEmployee.jsp");
 			requestDispatcher.forward(request, response);
 		 }catch(SQLException e){

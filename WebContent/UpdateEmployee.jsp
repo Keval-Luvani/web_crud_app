@@ -32,7 +32,7 @@
 			<input type="number" name="salary" required value=${employee.getSalary()} step=0.01><br>
 			
 			<label for="date">Joining_Date : </label>
-			<input type="date" name="joining_date" required value=${employee.getJoiningDate()}><br>
+			<input type="date" name="joining_date" required value=${employee.getJoiningDate()} max=${todayDate}><br>
 			
 			<input type="submit" value="Submit">
 		</form>
