@@ -48,6 +48,6 @@
 	   	  </tr>	
       	  <% }} %>
       </table>
-      <a href="/web_crud_app/CreateEmployee.jsp">Create Employee</a>
+      <a href="/web_crud_app/employee/create">Create Employee</a>
      </body>
 </html>

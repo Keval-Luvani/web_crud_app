@@ -10,7 +10,7 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
-		<form action="/web_crud_app/employee/update" method="post">
+		<form action="/web_crud_app/employee/${action}" method="post">
 		    <input name="employee_id" type="hidden" value=${employee.getEmployeeId()}>
 		    
 			<label for="name">Name : </label>
@@ -29,12 +29,12 @@
 		    <input type="checkbox"  name="skills" value="SQL" ${skillList.contains("SQL") ? 'checked' : ''}>SQL <br>
 		    
 		    <label for="salary">Salary : </label>
-			<input type="number" name="salary" required value=${employee.getSalary()} step=0.01><br>
+			<input type="number" name="salary" required step=0.01 value=${employee.getSalary()} ><br>
 			
 			<label for="date">Joining_Date : </label>
-			<input type="date" name="joining_date" required value=${employee.getJoiningDate()} max=${todayDate}><br>
+			<input type="date" name="joining_date" required max=${todayDate} value=${employee.getJoiningDate()}> <br>
 			
-			<input type="submit" value="Update">
+			<input type="submit" value=${action}>
 		</form>
 	</body>
 </html>

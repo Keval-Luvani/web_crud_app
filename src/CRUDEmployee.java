@@ -38,6 +38,8 @@ public class CRUDEmployee extends HttpServlet {
 			CRUDoperation.fetchData(request,response);
 		}else if(action.equals("delete")){
 			CRUDoperation.deleteEmployee(request,response);
+		}else if(action.equals("create")){
+			CRUDoperation.createEmployeePage(request,response);
 		}
 	}
 	

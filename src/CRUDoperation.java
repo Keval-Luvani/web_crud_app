@@ -14,6 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 import web_crud_app.DatabaseConnection;
 
 public class CRUDoperation {
+	public static void createEmployeePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		LocalDate date = LocalDate.now();
+        String todayDate= date.toString(); 
+        request.setAttribute("todayDate", todayDate);
+		request.setAttribute("action","create");
+		
+		request.getRequestDispatcher("/EmployeeDataEntry.jsp").forward(request, response);
+	}
 	
     public static void fetchData(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	int employeeId = Integer.parseInt(request.getParameter("employeeid"));
@@ -41,8 +49,8 @@ public class CRUDoperation {
 	        request.setAttribute("employee", employee);
 	        request.setAttribute("skillList", skillList);
 	        request.setAttribute("todayDate", todayDate);
-
-	        request.getRequestDispatcher("/UpdateEmployee.jsp").forward(request, response);
+	        request.setAttribute("action","update");
+	        request.getRequestDispatcher("/EmployeeDataEntry.jsp").forward(request, response);
 		 }catch(SQLException e){
 	    	e.printStackTrace();
 	     }catch (ClassNotFoundException e) {
@@ -137,4 +145,6 @@ public class CRUDoperation {
 			e.printStackTrace();
 		}
 	}
+
+	
 }
