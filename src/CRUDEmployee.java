@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import web_crud_app.DatabaseConnection;
 
-@WebServlet(urlPatterns = {"/employee/*"})
+@WebServlet("/employee/*")
 public class CRUDEmployee extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -33,7 +33,7 @@ public class CRUDEmployee extends HttpServlet {
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = getAction(request);
-		
+			
 		if(action.equals("update")){
 			CRUDoperation.fetchData(request,response);
 		}else if(action.equals("delete")){
@@ -45,11 +45,12 @@ public class CRUDEmployee extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = getAction(request);
-		
-		if(action.equals("create")) {
-			CRUDoperation.createEmployee(request,response);
-		}else if(action.equals("update")){
-			CRUDoperation.updateEmployee(request,response);
+		if(action.equals("submit")) {
+			if(request.getParameter("employee_id").equals("")) {
+				CRUDoperation.createEmployee(request,response);
+			}else {
+				CRUDoperation.updateEmployee(request,response);
+			}
 		}
 	}
 }

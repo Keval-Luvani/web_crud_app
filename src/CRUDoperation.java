@@ -15,11 +15,7 @@ import web_crud_app.DatabaseConnection;
 
 public class CRUDoperation {
 	public static void createEmployeePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LocalDate date = LocalDate.now();
-        String todayDate= date.toString(); 
-        request.setAttribute("todayDate", todayDate);
-		request.setAttribute("action","create");
-		
+	    request.setAttribute("todayDate", LocalDate.now().toString());
 		request.getRequestDispatcher("/EmployeeDataEntry.jsp").forward(request, response);
 	}
 	
@@ -43,13 +39,11 @@ public class CRUDoperation {
 	        	employee.setJoiningDate(resultSet.getString(6));       
 	        }
 	        
-	        LocalDate date = LocalDate.now();
-	        String todayDate= date.toString(); 
 	        List<String> skillList = Arrays.asList(employee.getSkills().split(","));
 	        request.setAttribute("employee", employee);
 	        request.setAttribute("skillList", skillList);
-	        request.setAttribute("todayDate", todayDate);
-	        request.setAttribute("action","update");
+	        request.setAttribute("todayDate", LocalDate.now().toString());
+	        
 	        request.getRequestDispatcher("/EmployeeDataEntry.jsp").forward(request, response);
 		 }catch(SQLException e){
 	    	e.printStackTrace();

@@ -29,7 +29,7 @@
 		      <th>Age</th>
 		      <th>Salary</th>
 		      <th>Skills</th>
-		      <th>Joining_Date</th>
+		      <th>Joining Date</th>
 		      <th>Action</th>
 	      </tr>
 	      <% if(resultset!=null){ 
@@ -42,12 +42,12 @@
 		       <td> <%= resultset.getString(5) %></td>
 		       <td> <%= resultset.getString(6) %></td>
 		       <td>
-		        <a href="/web_crud_app/employee/update?employeeid=<%= resultset.getInt(1)%>">Update</a>
-		        <a href="/web_crud_app/employee/delete?employeeid=<%= resultset.getInt(1)%>">Delete</a>
-		       </td>
+		        <a href="<%= request.getContextPath() %>/employee/update?employeeid=<%= resultset.getInt(1)%>">Update</a>
+		        <a href="<%= request.getContextPath() %>/employee/delete?employeeid=<%= resultset.getInt(1)%>">Delete</a>
+		       </td>	
 	   	  </tr>	
       	  <% }} %>
       </table>
-      <a href="/web_crud_app/employee/create">Create Employee</a>
+      <a href="<%= request.getContextPath() %>	/employee/create">Create Employee</a>
      </body>
 </html>
