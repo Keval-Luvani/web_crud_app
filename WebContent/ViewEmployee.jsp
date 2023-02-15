@@ -2,27 +2,16 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.sql.*" 
     import="web_crud_app.DatabaseConnection"%>
-
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <html>
    	<head>
        <title>Employees</title>
     </head>
     <body>
+    
        <h1>Employee Data</h1>
-       <%
-	       int id = 0;
-	       Connection connection = DatabaseConnection.initializeDatabase();
-	       String query = "select * from Employee";
-	       PreparedStatement preparedStatement = connection.prepareStatement(query);
-	       ResultSet resultset = null;
-	       
-	       try{
-	    	  resultset = preparedStatement.executeQuery();
-	       }catch(Exception ex){
-	    	  ex.printStackTrace();
-	       }
-       %>
-      <table BORDER="1">
+       <% int id=0; %>
+       <table BORDER="1">
 	      <tr>
 		      <th>ID</th>
 		      <th>Name</th>
@@ -32,22 +21,21 @@
 		      <th>Joining Date</th>
 		      <th>Action</th>
 	      </tr>
-	      <% if(resultset!=null){ 
-	      		while(resultset.next()){ %>
-	      <tr>
-		       <td> <%= ++id %></td>
-		       <td> <%= resultset.getString(2) %></td>
-		       <td> <%= resultset.getInt(3) %></td>
-		       <td> <%= resultset.getFloat(4) %></td>
-		       <td> <%= resultset.getString(5) %></td>
-		       <td> <%= resultset.getString(6) %></td>
+	      <c:forEach items="${employeeList}" var="employee" varStatus="rows">
+    		<tr>
+        	   <td>${rows.count}</td>
+		       <td>${employee.getName()} </td>
+		       <td>${employee.getAge()} </td>
+		       <td>${employee.getSalary()} </td>
+		       <td>${String.join(",",employee.getSkillList())} </td>
+		       <td>${employee.getJoiningDate()} </td>
 		       <td>
-		        <a href="<%= request.getContextPath() %>/employee/update?employeeid=<%= resultset.getInt(1)%>">Update</a>
-		        <a href="<%= request.getContextPath() %>/employee/delete?employeeid=<%= resultset.getInt(1)%>">Delete</a>
-		       </td>	
-	   	  </tr>	
-      	  <% }} %>
-      </table>
-      <a href="<%= request.getContextPath() %>	/employee/create">Create Employee</a>
+		        <a href="<%= request.getContextPath() %>/employee/update?employeeid=${employee.getEmployeeId()}">Update</a>
+		        <a href="<%= request.getContextPath() %>/employee/delete?employeeid=${employee.getEmployeeId()}">Delete</a>
+		       </td>  
+    		</tr>
+		  </c:forEach>
+	   </table>
+       <a href="<%= request.getContextPath() %>/employee/create">Create Employee</a>
      </body>
 </html>
