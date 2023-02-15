@@ -20,13 +20,43 @@
 			<input type="number" name="age" required min=14 value=${employee.getAge()}><br>
 			
 			<label for="skills">Skills : </label>
-		    <input type="checkbox"  name="skills" value="Java" ${skillList.contains("Java") ? 'checked' : ''}>Java
-		    <input type="checkbox"  name="skills" value="Python" ${skillList.contains("Python") ? 'checked' : ''}>Python
-		    <input type="checkbox"  name="skills" value="Node Js" ${skillList.contains("Node Js") ? 'checked' : ''}>Node Js	
-		    <input type="checkbox"  name="skills" value="PHP" ${skillList.contains("PHP") ? 'checked' : ''}>PHP
-		    <input type="checkbox"  name="skills" value="React" ${skillList.contains("React") ? 'checked' : ''}>React
-		    <input type="checkbox"  name="skills" value="Angular" ${skillList.contains("Angular") ? 'checked' : ''}>Angular
-		    <input type="checkbox"  name="skills" value="SQL" ${skillList.contains("SQL") ? 'checked' : ''}>SQL <br>
+			
+		    <input type="checkbox"  name="skills" value="Java"
+		    	<c:if test='${skillList.getSkillList().contains("Java")}'>  
+   					checked
+   				</c:if> 
+		    >Java
+		    <input type="checkbox"  name="skills" value="Python"
+		    	<c:if test='${skillList.getSkillList().contains("Python")}'>  
+   					checked
+				</c:if>
+			>Python
+			<input type="checkbox"  name="skills" value="Node Js"
+		    	<c:if test='${skillList.getSkillList().contains("Node Js")}'>  
+   					checked
+				</c:if> 
+		    >Node Js
+		    <input type="checkbox"  name="skills" value="PHP"
+		    	<c:if test='${skillList.getSkillList().contains("PHP")}'>  
+   					checked
+				</c:if>
+			>PHP
+			<input type="checkbox"  name="skills" value="React"
+		    	<c:if test='${skillList.getSkillList().contains("React")}'>  
+   					checked
+				</c:if> 
+		    >React
+		    <input type="checkbox"  name="skills" value="Angualar"
+		    	<c:if test='${skillList.getSkillList().contains("Angular")}'>  
+   					checked
+				</c:if>
+			>Angular
+			<input type="checkbox"  name="skills" value="SQL"
+		    	<c:if test='${skillList.getSkillList().contains("SQL")}'>  
+   					checked
+				</c:if>
+			>SQL
+			<br>
 		    
 		    <label for="salary">Salary : </label>
 			<input type="number" name="salary" required step=0.01 value=${employee.getSalary()} ><br>
