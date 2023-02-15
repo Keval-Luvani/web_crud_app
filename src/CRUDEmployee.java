@@ -1,4 +1,6 @@
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import web_crud_app.DatabaseConnection;
 
-@WebServlet(urlPatterns = {"/employee/*"})
+@WebServlet(urlPatterns = {"/employee/*","/"})
 public class CRUDEmployee extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -33,23 +35,31 @@ public class CRUDEmployee extends HttpServlet {
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = getAction(request);
-		
+			
 		if(action.equals("update")){
 			CRUDoperation.fetchData(request,response);
 		}else if(action.equals("delete")){
 			CRUDoperation.deleteEmployee(request,response);
 		}else if(action.equals("create")){
 			CRUDoperation.createEmployeePage(request,response);
+		}else{
+			try {
+				CRUDoperation.viewEmployee(request,response);
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = getAction(request);
-		
-		if(action.equals("create")) {
-			CRUDoperation.createEmployee(request,response);
-		}else if(action.equals("update")){
-			CRUDoperation.updateEmployee(request,response);
+		if(action.equals("submit")) {
+			if(request.getParameter("employee_id").equals("")) {
+				CRUDoperation.createEmployee(request,response);
+			}else {
+				CRUDoperation.updateEmployee(request,response);
+			}
 		}
 	}
 }

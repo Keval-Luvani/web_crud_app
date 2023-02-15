@@ -1,10 +1,9 @@
 
-public class Employee {
+public class Employee extends Skills{
 	private int employeeId;
 	private String name;
 	private int age;
 	private float salary;
-	private String skills;
 	private String joiningDate;
 	
 	public int getEmployeeId() {
@@ -42,10 +41,4 @@ public class Employee {
 		this.joiningDate = joiningDate;
 	}
 	
-	public String getSkills() {
-		return skills;
-	}
-	public void setSkills(String skills) {
-		this.skills = skills;
-	}
 }
